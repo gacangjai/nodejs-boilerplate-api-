@@ -17,12 +17,12 @@ async function initialize() {
 
     // init models and add them to the exported db object
     db.Account = require('../accounts/account.model')(sequelize);
-    db.RefreshToken = require('../accounts/refresh-tokens.model')(sequelize);
+    db.RefreshToken = require('../accounts/refresh-token.model')(sequelize);
 
     // define relationships
     db.Account.hasMany(db.RefreshToken, { onDelete: 'CASCADE' });
     db.RefreshToken.belongsTo(db.Account);
-
+    
     // sync all models with database
     await sequelize.sync();
 }
